@@ -1,26 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "MEJDAR — Restaurant Ordering & Reservations",
+    default: "MEJDAR — Hospitality Systems",
     template: "%s | MEJDAR",
   },
   description:
-    "MEJDAR gives restaurants their own branded ordering, reservation and analytics system with local support and predictable monthly pricing.",
+    "MEJDAR gives restaurants their own branded ordering, reservation and analytics system with local support and predictable monthly pricing. Built in Malta for independent hospitality businesses.",
   keywords: [
     "restaurant ordering",
     "online ordering",
@@ -29,6 +31,7 @@ export const metadata: Metadata = {
     "restaurant technology",
     "delivery",
     "takeaway",
+    "hospitality systems",
   ],
   openGraph: {
     type: "website",
@@ -45,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Header />
