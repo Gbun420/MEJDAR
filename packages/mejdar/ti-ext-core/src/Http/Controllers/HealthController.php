@@ -60,8 +60,8 @@ class HealthController extends Controller
         try {
             $theme = resolve(\Igniter\Main\Classes\ThemeManager::class)->getActiveTheme();
             $checks['theme'] = [
-                'code' => $theme->getCode(),
                 'name' => $theme->getName(),
+                'path' => $theme->getPath(),
             ];
         } catch (\Exception $e) {
             $checks['theme'] = ['status' => 'error'];

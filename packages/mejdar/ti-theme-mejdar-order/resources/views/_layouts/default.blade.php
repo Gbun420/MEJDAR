@@ -1,5 +1,5 @@
 @php
-    $themeData = $theme->getCustomData() ?? [];
+    $themeData = $this->theme->getCustomData() ?? [];
     $primaryColour = $themeData['primary_colour'] ?? '#006D6D';
     $secondaryColour = $themeData['secondary_colour'] ?? '#102F35';
     $accentColour = $themeData['accent_colour'] ?? '#C96546';
@@ -44,7 +44,7 @@
         }
     </style>
 </head>
-<body class="@yield('body-class', '')">
+<body class="@yield('body-class', $this->page->bodyClass ?? '')">
 
     {{-- Header --}}
     @section('header')
@@ -84,7 +84,7 @@
     @show
 
     {{-- Flash messages --}}
-    @if(session_has('message'))
+    @if(session()->has('message'))
         <div class="mejdar-flash" role="alert">
             <div class="container">
                 {{ session('message') }}

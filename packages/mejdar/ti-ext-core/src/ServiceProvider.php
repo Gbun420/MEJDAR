@@ -36,13 +36,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function registerRoutes(): void
     {
         Route::middleware(['web', 'admin'])->prefix('admin/mejdar')->group(function(): void {
-            Route::get('settings', [Controllers\SettingsController::class, 'index'])->name('igniter.mejdar-core.settings');
-            Route::post('settings', [Controllers\SettingsController::class, 'update'])->name('igniter.mejdar-core.settings.update');
+            Route::get('settings', [Http\Controllers\SettingsController::class, 'index'])->name('igniter.mejdar-core.settings');
+            Route::post('settings', [Http\Controllers\SettingsController::class, 'update'])->name('igniter.mejdar-core.settings.update');
         });
 
         // Health endpoint (no auth required)
         Route::middleware(['web'])->prefix('api')->group(function(): void {
-            Route::get('health', [Controllers\HealthController::class, 'index'])->name('igniter.mejdar-core.health');
+            Route::get('health', [Http\Controllers\HealthController::class, 'index'])->name('igniter.mejdar-core.health');
         });
     }
 
@@ -53,7 +53,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             $manager->addSideMenuItem('main', 'advanced', 'mejdar', [
                 'label' => 'MEJDAR',
                 'icon' => 'icon-settings',
-                'url' => 'igniter/mejdar-core/settings',
+                'url' => 'mejdar/settings',
                 'permission' => 'igniter.manage_settings',
             ]);
         });
