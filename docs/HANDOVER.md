@@ -15,7 +15,7 @@ MEJDAR is a white-label hospitality management platform built on TastyIgniter v4
 - **TastyIgniter v4.3.4** — Restaurant ordering and reservation system
 - **MEJDAR Theme** — Custom branded theme inheriting from Orange
 - **MEJDAR Core Extension** — Health endpoint, reports, settings, demo seeding
-- **Next.js Website** — 14-page marketing site with lead capture
+- **Next.js Website** — 16-page marketing site with lead capture, fully redesigned with custom brand identity
 - **Docker Infrastructure** — Dev and production Docker Compose configs
 - **Demo Data** — Harbour Table restaurant with 53 menu items, 25 orders, 8 reservations
 - **CI Pipeline** — GitHub Actions with linting, testing, and building
@@ -228,8 +228,8 @@ docker compose exec app php artisan test --no-interaction
 ### Website
 
 ```bash
-cd apps/website && npm run lint   # 0 errors, 1 warning
-cd apps/website && npm run build  # 14 routes, all static
+cd apps/website && npm run lint   # 0 errors
+cd apps/website && npm run build  # 16 routes, all static
 ```
 
 ### Health Endpoint

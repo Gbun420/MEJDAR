@@ -1,7 +1,7 @@
 # MEJDAR — Build Status
 
 **Last updated:** 2026-07-30  
-**Current phase:** Netlify Deployment Complete
+**Current phase:** Website Redesign Complete
 
 ---
 
@@ -9,8 +9,8 @@
 
 | Check | Result |
 |---|---|
-| Website lint | 0 errors, 1 warning (unused var — non-blocking) |
-| Website build | 14 routes built, all static |
+| Website lint | 0 errors, 0 warnings |
+| Website build | 16 routes built, all static |
 | compose.yaml | VALID |
 | compose.production-free.yaml | VALID |
 | docker-compose.production.yml | VALID |
@@ -38,7 +38,21 @@
 | Sitemap | /sitemap.xml — all 13 routes, correct base URL |
 | Robots.txt | /robots.txt — allows all, disallows /api/ |
 | 404 page | Custom not-found page renders correctly |
-| Environment variables | Set via Netlify dashboard (not committed) |
+| Environment variables | Set via Netlify CLI (not committed) |
+
+### Website Redesign (2026-07-30)
+
+- New brand color system (teal #006D6D, navy #102F35, limestone #F3EFE6, terracotta #C96546, olive #6C7D47)
+- Custom SVG logo with wordmark and icon variants
+- Sticky header with backdrop blur and keyboard-accessible mobile menu
+- Redesigned footer with product/company/legal columns and TastyIgniter attribution
+- AnimateInView component with IntersectionObserver and prefers-reduced-motion
+- ProductPreview tabbed mock-up (ordering, dashboard, reservations, analytics)
+- Full homepage rewrite (hero, features, comparison, product preview, process, pricing, trust, CTA)
+- All 13 content pages redesigned with consistent brand identity
+- Inter + DM Sans font pairing
+- Contact form extracted to client component for server component metadata export
+- lucide-react icon library integrated
 
 ---
 
