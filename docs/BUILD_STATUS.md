@@ -1,7 +1,7 @@
 # MEJDAR — Build Status
 
 **Last updated:** 2026-07-30  
-**Current phase:** Phase 10 — Final Audit
+**Current phase:** Netlify Deployment Complete
 
 ---
 
@@ -19,6 +19,26 @@
 | Git state | Clean, on main, tracking origin/main |
 | PHPUnit | 24 passed, 1 skipped |
 | All containers healthy | Yes (7/7) |
+
+---
+
+## Netlify Website Deployment (2026-07-30)
+
+| Check | Result |
+|---|---|
+| Deploy provider | Netlify Free |
+| Deploy URL | https://shiny-crisp-0a25e3.netlify.app |
+| Build status | Published (all static) |
+| Routes | 16 (13 pages + robots.txt + sitemap.xml + _not-found) |
+| Framework | Next.js 16.2.12 (detected by Netlify) |
+| Node version | 22.23.2 (set via netlify.toml) |
+| Plugins | @netlify/plugin-nextjs v5.15.13 |
+| GitHub repo connected | Yes (Gbun420/MEJDAR, production branch: main) |
+| Auto-deploy | Yes (push to main triggers build) |
+| Sitemap | /sitemap.xml — all 13 routes, correct base URL |
+| Robots.txt | /robots.txt — allows all, disallows /api/ |
+| 404 page | Custom not-found page renders correctly |
+| Environment variables | Set via Netlify dashboard (not committed) |
 
 ---
 

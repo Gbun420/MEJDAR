@@ -136,7 +136,7 @@ docker compose -f docker-compose.production.yml exec app php artisan tinker
 ### Deployment Guides
 
 - **Docker/VPS:** `docs/DEPLOYMENT.md` (comprehensive)
-- **Vercel (website only):** `docs/DEPLOYMENT.md#vercel-deployment`
+- **Netlify (website):** Deployed at https://shiny-crisp-0a25e3.netlify.app — auto-deploys from `main`
 - **Oracle Free Tier:** `compose.production-free.yaml`
 
 ---
@@ -252,6 +252,7 @@ Returns: `{"status":"ok","theme":"mejdar-order","php":"8.3.32","laravel":"12.64.
 | `docker-compose.production.yml` | Production Docker Compose |
 | `compose.production-free.yaml` | Oracle free tier compose |
 | `Makefile` | Dev commands |
+| `netlify.toml` | Netlify deployment config |
 | `.github/workflows/ci.yml` | CI pipeline |
 | `apps/restaurant/composer.json` | TastyIgniter dependencies |
 | `apps/website/package.json` | Next.js dependencies |
@@ -286,10 +287,10 @@ packages/mejdar/
 
 ### Immediate
 
-1. **Deploy to production** — Follow `docs/DEPLOYMENT.md`
-2. **Configure Stripe** — Add API keys to `.env`, enable in settings
-3. **Set up SMTP** — Configure mail credentials for transactional emails
-4. **DNS and SSL** — Point domain to server, configure Let's Encrypt
+1. **Configure Stripe** — Add API keys to `.env`, enable in settings
+2. **Set up SMTP** — Configure mail credentials for transactional emails
+3. **Custom domain** — Connect a domain to Netlify (or point DNS to the app server)
+4. **Deploy TastyIgniter** — Follow `docs/DEPLOYMENT.md` for the restaurant backend
 
 ### Short-term
 
