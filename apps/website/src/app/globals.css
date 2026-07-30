@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #172126;
 
   --mejdar-teal: #006D6D;
   --mejdar-teal-light: #008A8A;
@@ -16,7 +16,7 @@
   --mejdar-olive-light: #8FA060;
   --mejdar-white: #FFFFFF;
   --mejdar-offwhite: #FAFAF8;
-  --mejdar-gray: #6B7280;
+  --mejdar-gray: #657377;
   --mejdar-gray-light: #F3F4F6;
   --mejdar-gray-dark: #374151;
 
@@ -84,6 +84,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -101,12 +103,70 @@ h1, h2, h3, h4, h5, h6 {
 :focus-visible {
   outline: 2px solid var(--mejdar-teal);
   outline-offset: 2px;
+  border-radius: 4px;
 }
 
-/* Stagger animation delays */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-.stagger-5 { animation-delay: 0.5s; }
-.stagger-6 { animation-delay: 0.6s; }
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--mejdar-teal);
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Prose styles for legal pages */
+.prose h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--mejdar-navy);
+}
+
+.prose h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--mejdar-navy);
+}
+
+.prose p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  color: var(--mejdar-gray-dark);
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: var(--mejdar-gray-dark);
+}
+
+.prose a {
+  color: var(--mejdar-teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover {
+  color: var(--mejdar-teal-light);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--mejdar-navy);
+}

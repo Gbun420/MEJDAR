@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, ArrowRight } from "lucide-react";
+import { Send, ArrowRight, Mail, Phone, MapPin } from "lucide-react";
 import { brand } from "@/lib/config";
 import { AnimateInView } from "@/components/AnimateInView";
 
@@ -51,6 +51,12 @@ export function ContactForm() {
                     Thank you for your enquiry. We will get back to you within
                     1 business day.
                   </p>
+                  <p className="mt-2 text-sm text-mejdar-gray">
+                    For urgent enquiries, email us directly at{" "}
+                    <a href="mailto:hello@mejdar.com" className="text-mejdar-teal hover:underline">
+                      hello@mejdar.com
+                    </a>
+                  </p>
                 </div>
               ) : (
                 <form
@@ -70,6 +76,7 @@ export function ContactForm() {
                         id="name"
                         name="name"
                         required
+                        autoComplete="name"
                         className="mt-1.5 block w-full rounded-lg border border-mejdar-navy/15 px-3.5 py-2.5 text-sm text-mejdar-navy outline-none transition focus:border-mejdar-teal focus:ring-2 focus:ring-mejdar-teal/20"
                       />
                     </div>
@@ -100,6 +107,7 @@ export function ContactForm() {
                         id="email"
                         name="email"
                         required
+                        autoComplete="email"
                         className="mt-1.5 block w-full rounded-lg border border-mejdar-navy/15 px-3.5 py-2.5 text-sm text-mejdar-navy outline-none transition focus:border-mejdar-teal focus:ring-2 focus:ring-mejdar-teal/20"
                       />
                     </div>
@@ -114,6 +122,7 @@ export function ContactForm() {
                         type="tel"
                         id="phone"
                         name="phone"
+                        autoComplete="tel"
                         className="mt-1.5 block w-full rounded-lg border border-mejdar-navy/15 px-3.5 py-2.5 text-sm text-mejdar-navy outline-none transition focus:border-mejdar-teal focus:ring-2 focus:ring-mejdar-teal/20"
                       />
                     </div>
@@ -131,8 +140,8 @@ export function ContactForm() {
                       >
                         <option value="">Select...</option>
                         <option>1</option>
-                        <option>2–5</option>
-                        <option>6–10</option>
+                        <option>2\u20135</option>
+                        <option>6\u201310</option>
                         <option>10+</option>
                       </select>
                     </div>
@@ -207,29 +216,44 @@ export function ContactForm() {
                 <h3 className="font-[family-name:var(--font-dm-sans)] text-lg font-semibold text-mejdar-navy">
                   Other ways to reach us
                 </h3>
-                <div className="mt-4 space-y-4 text-sm text-mejdar-gray-dark">
-                  <div>
-                    <p className="font-medium text-mejdar-navy">Email</p>
-                    <a
-                      href="mailto:hello@mejdar.com"
-                      className="text-mejdar-teal hover:underline"
-                    >
-                      hello@mejdar.com
-                    </a>
+                <div className="mt-6 space-y-5">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-mejdar-teal/10 text-mejdar-teal">
+                      <Mail className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-mejdar-navy">Email</p>
+                      <a
+                        href="mailto:hello@mejdar.com"
+                        className="text-sm text-mejdar-teal hover:underline"
+                      >
+                        hello@mejdar.com
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium text-mejdar-navy">Phone</p>
-                    <a
-                      href="tel:+35621234567"
-                      className="text-mejdar-teal hover:underline"
-                    >
-                      +356 2123 4567
-                    </a>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-mejdar-teal/10 text-mejdar-teal">
+                      <Phone className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-mejdar-navy">Phone</p>
+                      <a
+                        href="tel:+35621234567"
+                        className="text-sm text-mejdar-teal hover:underline"
+                      >
+                        +356 2123 4567
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium text-mejdar-navy">Address</p>
-                    <p>123 Harbour Street</p>
-                    <p>Valletta, Malta</p>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-mejdar-teal/10 text-mejdar-teal">
+                      <MapPin className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-mejdar-navy">Address</p>
+                      <p className="text-sm text-mejdar-gray-dark">123 Harbour Street</p>
+                      <p className="text-sm text-mejdar-gray-dark">Valletta, Malta</p>
+                    </div>
                   </div>
                 </div>
               </div>

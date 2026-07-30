@@ -1,7 +1,7 @@
 # MEJDAR — Build Status
 
 **Last updated:** 2026-07-30  
-**Current phase:** Website Redesign Complete
+**Current phase:** Production Polish Complete
 
 ---
 
@@ -40,19 +40,28 @@
 | 404 page | Custom not-found page renders correctly |
 | Environment variables | Set via Netlify CLI (not committed) |
 
-### Website Redesign (2026-07-30)
+### Website Redesign and Production Polish (2026-07-30)
 
 - New brand color system (teal #006D6D, navy #102F35, limestone #F3EFE6, terracotta #C96546, olive #6C7D47)
 - Custom SVG logo with wordmark and icon variants
+- Custom favicon (SVG format)
 - Sticky header with backdrop blur and keyboard-accessible mobile menu
 - Redesigned footer with product/company/legal columns and TastyIgniter attribution
 - AnimateInView component with IntersectionObserver and prefers-reduced-motion
 - ProductPreview tabbed mock-up (ordering, dashboard, reservations, analytics)
-- Full homepage rewrite (hero, features, comparison, product preview, process, pricing, trust, CTA)
+- Full homepage rewrite with 12 sections (hero, value prop, product preview, how it works, ordering, reservations, analytics, comparison, pricing, FAQ, trust, CTA)
 - All 13 content pages redesigned with consistent brand identity
-- Inter + DM Sans font pairing
-- Contact form extracted to client component for server component metadata export
-- lucide-react icon library integrated
+- Inter + DM Sans font pairing with antialiased rendering
+- Contact form with sidebar contact info, honeypot spam protection, consent checkbox
+- Demo page with feature preview cards and walkthrough CTA
+- FAQ section with accessible details/summary elements
+- Schema.org structured data (Organization + Service)
+- Enhanced SEO metadata (Open Graph, Twitter cards, canonical URLs, robots)
+- Improved sitemap with priority and changeFrequency
+- Prose styles for legal pages
+- Skip-to-content link support
+- Focus visible styles with proper border-radius
+- Contact form success state with fallback email link
 
 ---
 

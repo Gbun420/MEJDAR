@@ -32,7 +32,7 @@ export function Footer() {
               Malta for independent hospitality businesses.
             </p>
             <div className="mt-4 flex gap-4">
-              {brand.social.linkedin !== "#" && (
+              {brand.social.linkedin && (
                 <a
                   href={brand.social.linkedin}
                   className="text-white/40 transition hover:text-white"
@@ -43,7 +43,7 @@ export function Footer() {
                   </svg>
                 </a>
               )}
-              {brand.social.facebook !== "#" && (
+              {brand.social.facebook && (
                 <a
                   href={brand.social.facebook}
                   className="text-white/40 transition hover:text-white"
@@ -54,7 +54,7 @@ export function Footer() {
                   </svg>
                 </a>
               )}
-              {brand.social.instagram !== "#" && (
+              {brand.social.instagram && (
                 <a
                   href={brand.social.instagram}
                   className="text-white/40 transition hover:text-white"

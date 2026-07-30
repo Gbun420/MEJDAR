@@ -29,13 +29,14 @@ export function ProductPreview() {
         </AnimateInView>
 
         {/* Tabs */}
-        <div className="mt-10 flex flex-wrap justify-center gap-2" role="tablist">
+        <div className="mt-10 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Product features">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               role="tab"
               aria-selected={active === tab.id}
               aria-controls={`panel-${tab.id}`}
+              id={`tab-${tab.id}`}
               onClick={() => setActive(tab.id)}
               className={`rounded-lg px-4 py-2.5 text-sm font-medium transition ${
                 active === tab.id
@@ -54,6 +55,7 @@ export function ProductPreview() {
             <div
               id="panel-ordering"
               role="tabpanel"
+              aria-labelledby="tab-ordering"
               className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-mejdar-navy/10 bg-white shadow-lg"
             >
               <div className="flex items-center gap-2 bg-mejdar-limestone/60 px-4 py-2">
@@ -83,10 +85,10 @@ export function ProductPreview() {
                   </div>
                   <div className="mt-4 grid gap-4 sm:grid-cols-2">
                     {[
-                      { name: "Rabbit Stew", desc: "Traditional Maltese rabbit braised in tomato, garlic and red wine", price: "€18.50" },
-                      { name: "Lampuki Fillet", desc: "Grilled dolphinfish with capers, olives and roasted vegetables", price: "€22.00" },
-                      { name: "Beef Bragioli", desc: "Beef olives stuffed with bacon, parsley and garlic in rich gravy", price: "€19.50" },
-                      { name: "Chicken Polpetti", desc: "Handmade chicken meatballs with herb mash and seasonal greens", price: "€16.50" },
+                      { name: "Rabbit Stew", desc: "Traditional Maltese rabbit braised in tomato, garlic and red wine", price: "\u20AC18.50" },
+                      { name: "Lampuki Fillet", desc: "Grilled dolphinfish with capers, olives and roasted vegetables", price: "\u20AC22.00" },
+                      { name: "Beef Bragioli", desc: "Beef olives stuffed with bacon, parsley and garlic in rich gravy", price: "\u20AC19.50" },
+                      { name: "Chicken Polpetti", desc: "Handmade chicken meatballs with herb mash and seasonal greens", price: "\u20AC16.50" },
                     ].map((item) => (
                       <div key={item.name} className="rounded-xl border border-mejdar-navy/5 p-4 transition hover:shadow-sm">
                         <div className="h-24 rounded-lg bg-mejdar-limestone" />
@@ -108,6 +110,7 @@ export function ProductPreview() {
             <div
               id="panel-dashboard"
               role="tabpanel"
+              aria-labelledby="tab-dashboard"
               className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-mejdar-navy/10 bg-white shadow-lg"
             >
               <div className="flex items-center gap-2 bg-mejdar-limestone/60 px-4 py-2">
@@ -118,10 +121,10 @@ export function ProductPreview() {
               </div>
               <div className="grid gap-4 p-6 sm:grid-cols-4">
                 {[
-                  { label: "Today's orders", value: "68", change: "+12%" },
-                  { label: "Revenue today", value: "€2,847", change: "+8%" },
+                  { label: "Today\u2019s orders", value: "68", change: "+12%" },
+                  { label: "Revenue today", value: "\u20AC2,847", change: "+8%" },
                   { label: "Active reservations", value: "23", change: "" },
-                  { label: "Avg. order value", value: "€41.87", change: "+5%" },
+                  { label: "Avg. order value", value: "\u20AC41.87", change: "+5%" },
                 ].map((stat) => (
                   <div key={stat.label} className="rounded-xl border border-mejdar-navy/5 p-4">
                     <div className="text-xs text-mejdar-gray">{stat.label}</div>
@@ -163,6 +166,7 @@ export function ProductPreview() {
             <div
               id="panel-reservations"
               role="tabpanel"
+              aria-labelledby="tab-reservations"
               className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-mejdar-navy/10 bg-white shadow-lg"
             >
               <div className="flex items-center gap-2 bg-mejdar-limestone/60 px-4 py-2">
@@ -173,7 +177,7 @@ export function ProductPreview() {
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-[family-name:var(--font-dm-sans)] text-lg font-bold text-mejdar-navy">Reservations — Wednesday, 30 July</h4>
+                  <h4 className="font-[family-name:var(--font-dm-sans)] text-lg font-bold text-mejdar-navy">Reservations \u2014 Wednesday, 30 July</h4>
                   <div className="flex gap-2">
                     <span className="rounded-md bg-mejdar-limestone px-3 py-1 text-xs font-medium text-mejdar-navy">Day</span>
                     <span className="rounded-md px-3 py-1 text-xs text-mejdar-gray hover:bg-mejdar-limestone">Week</span>
@@ -194,7 +198,7 @@ export function ProductPreview() {
                       </div>
                       <div className="flex-1">
                         <div className="text-sm font-medium text-mejdar-navy">{res.name}</div>
-                        <div className="text-xs text-mejdar-gray">{res.guests} guests · {res.table}</div>
+                        <div className="text-xs text-mejdar-gray">{res.guests} guests \u00b7 {res.table}</div>
                       </div>
                       <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${res.status === "Confirmed" ? "bg-green-50 text-green-700" : res.status === "Pending" ? "bg-yellow-50 text-yellow-700" : "bg-mejdar-limestone text-mejdar-gray-dark"}`}>
                         {res.status}
@@ -210,6 +214,7 @@ export function ProductPreview() {
             <div
               id="panel-analytics"
               role="tabpanel"
+              aria-labelledby="tab-analytics"
               className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-mejdar-navy/10 bg-white shadow-lg"
             >
               <div className="flex items-center gap-2 bg-mejdar-limestone/60 px-4 py-2">
@@ -222,7 +227,7 @@ export function ProductPreview() {
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div className="rounded-xl border border-mejdar-navy/5 p-4">
                     <div className="text-xs text-mejdar-gray">Weekly revenue</div>
-                    <div className="mt-1 font-[family-name:var(--font-dm-sans)] text-2xl font-bold text-mejdar-navy">€18,432</div>
+                    <div className="mt-1 font-[family-name:var(--font-dm-sans)] text-2xl font-bold text-mejdar-navy">\u20AC18,432</div>
                     <div className="mt-1 text-xs text-mejdar-teal">+12% vs last week</div>
                   </div>
                   <div className="rounded-xl border border-mejdar-navy/5 p-4">
