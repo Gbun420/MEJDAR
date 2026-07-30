@@ -1,6 +1,5 @@
 [build]
-  base = "apps/website"
-  command = "npm run build"
+  command = "cd apps/website && npm run build"
 
 [build.environment]
   NODE_VERSION = "22"
