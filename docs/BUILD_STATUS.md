@@ -245,7 +245,9 @@
 - test: PHPUnit with MySQL + Redis
 - build: Next.js production build
 
-**Status:** ✅ Complete
+**Known issue:** All CI runs fail with `startup_failure` (no jobs executed). This is a repository-level issue, not a workflow file issue. The workflow files are valid (confirmed by `actionlint`). Likely needs GitHub Actions enabled in repo settings or billing check on the GitHub account.
+
+**Status:** ✅ Complete (workflow files ready, blocked on GitHub Actions configuration)
 
 ---
 

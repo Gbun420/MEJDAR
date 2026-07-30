@@ -182,6 +182,8 @@ GitHub Actions runs on push to `main`:
 3. **test** — PHPUnit with MySQL + Redis
 4. **build** — Next.js production build
 
+**Known issue:** All CI runs fail with `startup_failure` (no jobs executed). This is a repository-level issue — even a minimal 3-line workflow fails the same way. The workflow files are valid (confirmed by `actionlint`). This likely means GitHub Actions needs to be enabled in the repository settings or there's a billing/plan restriction on the GitHub account. Check: https://github.com/Gbun420/MEJDAR/settings/actions
+
 ---
 
 ## 6. Known Issues
