@@ -1,0 +1,190 @@
+version: 2.1
+
+# ─── Executors ─────────────────────────────────────────────────────────
+executors:
+  php:
+    docker:
+      - image: cimg/php:8.3
+    working_directory: ~/project
+  node:
+    docker:
+      - image: cimg/node:22.12
+    working_directory: ~/project
+
+# ─── Commands ──────────────────────────────────────────────────────────
+commands:
+  checkout-project:
+    steps:
+      - checkout
+      - run:
+          name: Clone subpackages
+          command: |
+            git submodule sync --recursive
+            git submodule update --init --recursive || true
+
+  restore-composer-cache:
+    steps:
+      - restore_cache:
+          keys:
+            - composer-v1-{{ checksum "apps/restaurant/composer.lock" }}
+            - composer-v1-
+
+  save-composer-cache:
+    steps:
+      - save_cache:
+          key: composer-v1-{{ checksum "apps/restaurant/composer.lock" }}
+          paths:
+            - ~/.composer/cache
+
+  restore-npm-cache:
+    steps:
+      - restore_cache:
+          keys:
+            - npm-v1-{{ checksum "apps/website/package-lock.json" }}
+            - npm-v1-
+
+  save-npm-cache:
+    steps:
+      - save_cache:
+          key: npm-v1-{{ checksum "apps/website/package-lock.json" }}
+          paths:
+            - apps/website/node_modules
+
+# ─── Jobs ──────────────────────────────────────────────────────────────
+jobs:
+  php-lint:
+    executor: php
+    steps:
+      - checkout-project
+      - restore-composer-cache
+      - run:
+          name: Install Composer dependencies
+          command: composer install --no-interaction --prefer-dist --no-progress
+          working_directory: apps/restaurant
+      - save-composer-cache
+      - run:
+          name: Validate composer.json
+          command: composer validate --strict
+          working_directory: apps/restaurant
+      - run:
+          name: Run PHP Pint
+          command: vendor/bin/pint --test
+          working_directory: apps/restaurant
+      - run:
+          name: Audit Composer dependencies
+          command: composer audit
+          working_directory: apps/restaurant
+
+  website-lint:
+    executor: node
+    steps:
+      - checkout-project
+      - restore-npm-cache
+      - run:
+          name: Install npm dependencies
+          command: npm ci
+          working_directory: apps/website
+      - save-npm-cache
+      - run:
+          name: Run ESLint
+          command: npm run lint
+          working_directory: apps/website
+
+  restaurant-tests:
+    executor: php
+    docker:
+      - image: cimg/php:8.3
+      - image: cimg/mysql:8.0
+        environment:
+          MYSQL_ROOT_PASSWORD: root_secret
+          MYSQL_DATABASE: mejdar_test
+          MYSQL_USER: mejdar
+          MYSQL_PASSWORD: secret
+      - image: cimg/redis:7.0
+    steps:
+      - checkout-project
+      - restore-composer-cache
+      - run:
+          name: Install Composer dependencies
+          command: composer install --no-interaction --prefer-dist --no-progress
+          working_directory: apps/restaurant
+      - save-composer-cache
+      - run:
+          name: Wait for MySQL
+          command: |
+            for i in $(seq 1 30); do
+              mysqladmin ping -h 127.0.0.1 --silent && break
+              sleep 2
+            done
+      - run:
+          name: Wait for Redis
+          command: |
+            for i in $(seq 1 10); do
+              redis-cli -h 127.0.0.1 ping && break
+              sleep 1
+            done
+      - run:
+          name: Prepare environment
+          command: |
+            cp .env.example .env
+            php artisan key:generate --ansi
+          working_directory: apps/restaurant
+      - run:
+          name: Install TastyIgniter
+          command: php artisan igniter:install --force --no-interaction
+          working_directory: apps/restaurant
+          environment:
+            DB_CONNECTION: mysql
+            DB_HOST: 127.0.0.1
+            DB_PORT: 3306
+            DB_DATABASE: mejdar_test
+            DB_USERNAME: mejdar
+            DB_PASSWORD: secret
+            CACHE_DRIVER: redis
+            SESSION_DRIVER: redis
+            QUEUE_CONNECTION: redis
+            REDIS_HOST: 127.0.0.1
+            REDIS_PORT: 6379
+      - run:
+          name: Run PHPUnit tests
+          command: vendor/bin/phpunit
+          working_directory: apps/restaurant
+          environment:
+            DB_CONNECTION: mysql
+            DB_HOST: 127.0.0.1
+            DB_PORT: 3306
+            DB_DATABASE: mejdar_test
+            DB_USERNAME: mejdar
+            DB_PASSWORD: secret
+            CACHE_DRIVER: redis
+            SESSION_DRIVER: redis
+            QUEUE_CONNECTION: redis
+            REDIS_HOST: 127.0.0.1
+            REDIS_PORT: 6379
+
+  website-build:
+    executor: node
+    steps:
+      - checkout-project
+      - restore-npm-cache
+      - run:
+          name: Install npm dependencies
+          command: npm ci
+          working_directory: apps/website
+      - save-npm-cache
+      - run:
+          name: Build Next.js website
+          command: npm run build
+          working_directory: apps/website
+          environment:
+            NEXT_PUBLIC_SITE_URL: http://localhost:3000
+            NEXT_PUBLIC_ANALYTICS_ENABLED: "false"
+
+# ─── Workflows ─────────────────────────────────────────────────────────
+workflows:
+  mejdar-ci:
+    jobs:
+      - php-lint
+      - website-lint
+      - restaurant-tests
+      - website-build

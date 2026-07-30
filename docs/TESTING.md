@@ -170,3 +170,52 @@ curl -s http://localhost:8080/api/health | python3 -m json.tool
 | Mailpit | mejdar-mailpit | healthy |
 | Queue Worker | mejdar-queue | running |
 | Scheduler | mejdar-scheduler | running |
+
+---
+
+## CI Pipeline (CircleCI)
+
+**Config:** `.circleci/config.yml`  
+**Validation:** `circleci config validate` — passed
+
+### Jobs
+
+| Job | Executor | What it does |
+|---|---|---|
+| `php-lint` | cimg/php:8.3 | Composer validate, Pint, composer audit |
+| `website-lint` | cimg/node:22.12 | npm ci, ESLint |
+| `restaurant-tests` | cimg/php:8.3 + MySQL 8 + Redis 7 | TI install, PHPUnit (24 tests) |
+| `website-build` | cimg/node:22.12 | npm ci, Next.js production build |
+
+### Local-equivalent commands
+
+```bash
+# PHP lint
+cd apps/restaurant
+composer validate --strict
+composer install --no-interaction --prefer-dist --no-progress
+vendor/bin/pint --test
+composer audit
+
+# Website lint
+cd apps/website
+npm ci
+npm run lint
+
+# Tests
+cd apps/restaurant
+cp .env.example .env
+php artisan key:generate
+php artisan igniter:install --force --no-interaction
+vendor/bin/phpunit
+
+# Build
+cd apps/website
+npm ci
+npm run build
+```
+
+### GitHub Actions (inactive)
+
+- File: `.github/workflows/ci.yml` — valid but blocked by account billing lock
+- Kept for future use when billing is resolved

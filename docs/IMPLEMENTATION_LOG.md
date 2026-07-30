@@ -418,3 +418,35 @@ apps/website/
 - `:ro` on app volumes → removed (breaks storage/cache writes)
 
 **Next step:** Create handover documentation, final commit and push.
+
+---
+
+### CircleCI Migration
+
+**Action:** Replaced blocked GitHub Actions with CircleCI pipeline  
+**Result:** CircleCI config validated, all 4 jobs configured.
+
+**Why CircleCI:**
+- GitHub Actions blocked by account-level billing lock
+- CircleCI free plan requires no credit card for public repos
+- Repository changed from private to public for free CI
+
+**CircleCI config (`.circleci/config.yml`):**
+- `php-lint` — PHP 8.3, Composer 2, Pint, composer audit
+- `website-lint` — Node.js 22, npm ci, ESLint
+- `restaurant-tests` — PHP 8.3, MySQL 8, Redis 7, TastyIgniter install, PHPUnit
+- `website-build` — Node.js 22, npm ci, Next.js production build
+
+**Validation:**
+- `circleci config validate` — passed
+- `js-yaml` — YAML valid
+- No secrets or .env files staged
+
+**Setup steps (manual):**
+1. Sign in to CircleCI with GitHub
+2. Install CircleCI GitHub App
+3. Grant access to `Gbun420/MEJDAR`
+4. Select the repository
+5. Pipeline triggers automatically on push
+
+**Next step:** Connect CircleCI GitHub App and verify first pipeline run.

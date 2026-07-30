@@ -232,22 +232,26 @@
 
 ## Phase 9 — CI and Deployment
 
-- [x] GitHub Actions CI (lint, test, build)
+- [x] GitHub Actions CI (lint, test, build) — valid but blocked by account billing lock
+- [x] CircleCI pipeline — active CI provider, all 4 jobs configured
 - [x] Production Docker Compose
 - [x] VPS deployment guide
 - [x] Vercel deployment guide
 - [x] Rollback procedures
 - [x] Monitoring setup
 
-**CI Workflow Jobs:**
-- php-lint: PHP Pint
-- website-lint: ESLint
-- test: PHPUnit with MySQL + Redis
-- build: Next.js production build
+**GitHub Actions (inactive):**
+- Workflow file: `.github/workflows/ci.yml` — valid, kept for future use
+- Status: Blocked by GitHub account-level billing lock
+- Error: "The job was not started because your account is locked due to a billing issue."
 
-**Known issue:** All CI runs fail with `startup_failure` (no jobs executed). This is a repository-level issue, not a workflow file issue. The workflow files are valid (confirmed by `actionlint`). Likely needs GitHub Actions enabled in repo settings or billing check on the GitHub account.
+**CircleCI (active):**
+- Config: `.circleci/config.yml` — validated with `circleci config validate`
+- Jobs: php-lint, website-lint, restaurant-tests, website-build
+- Source repo: GitHub (`Gbun420/MEJDAR`)
+- Free plan: No credit card required for public repos
 
-**Status:** ✅ Complete (workflow files ready, blocked on GitHub Actions configuration)
+**Status:** ✅ Complete
 
 ---
 

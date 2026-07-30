@@ -175,14 +175,18 @@ test:     Adding/updating tests
 
 ### CI/CD
 
-GitHub Actions runs on push to `main`:
+**Active CI provider:** CircleCI (free plan, no credit card required for public repos)
 
-1. **php-lint** — PHP Pint formatting check
+CircleCI runs on every push to any branch:
+
+1. **php-lint** — Composer validate, PHP Pint, composer audit
 2. **website-lint** — ESLint for Next.js
-3. **test** — PHPUnit with MySQL + Redis
-4. **build** — Next.js production build
+3. **restaurant-tests** — PHPUnit with MySQL 8 + Redis 7 (24 tests)
+4. **website-build** — Next.js production build
 
-**Known issue:** All CI runs fail with `startup_failure` (no jobs executed). This is a repository-level issue — even a minimal 3-line workflow fails the same way. The workflow files are valid (confirmed by `actionlint`). This likely means GitHub Actions needs to be enabled in the repository settings or there's a billing/plan restriction on the GitHub account. Check: https://github.com/Gbun420/MEJDAR/settings/actions
+**Config:** `.circleci/config.yml`
+
+**GitHub Actions (inactive):** `.github/workflows/ci.yml` is valid but blocked by an account-level billing lock. Kept for future use.
 
 ---
 
@@ -194,7 +198,6 @@ GitHub Actions runs on push to `main`:
 - No E2E Playwright tests
 - Privacy controls are template-only (no consent management)
 - Security headers beyond Laravel defaults not configured
-- No CI caching (Composer, npm)
 
 ### Schema Gotchas
 
