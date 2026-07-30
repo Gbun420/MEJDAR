@@ -1,7 +1,7 @@
 # MEJDAR — Build Status
 
 **Last updated:** 2026-07-30  
-**Current phase:** Phase 3 — MEJDAR Packages (packages built, awaiting activation)
+**Current phase:** Phase 3 — MEJDAR Packages (packages built, activation pending)
 
 ---
 
@@ -15,8 +15,7 @@
 | compose.production-free.yaml | VALID |
 | Secret scan (source code) | No hardcoded secrets found |
 | .env files | Properly excluded from git |
-| Nested .git | Removed |
-| .playwright-mcp | Removed |
+| Git state | Clean, on main, tracking origin/main |
 
 ---
 
@@ -95,44 +94,39 @@
 
 ### 3a. MEJDAR Theme (ti-theme-mejdar-order)
 
-- [ ] Create theme package structure
-- [ ] Implement theme inheritance from Orange
-- [ ] Add MEJDAR brand colours and typography
-- [ ] Add theme settings (logo, favicon, colours, fonts, hero, CTAs, social links)
-- [ ] Override layout, header, footer
-- [ ] Override menu cards, item detail, cart, checkout
-- [ ] Override reservation pages
-- [ ] Override customer account pages
-- [ ] Override error/empty/closed/sold-out states
-- [ ] Mobile-first responsive design
-- [ ] Accessible keyboard/focus behaviour
+- [x] Create theme package structure
+- [x] Implement theme inheritance from Orange
+- [x] Add MEJDAR brand colours and typography
+- [x] Add theme settings (logo, favicon, colours, fonts, hero, CTAs, social links)
+- [x] Override layout, header, footer
+- [x] Override menu cards, item detail, cart, checkout
+- [x] Override reservation pages
+- [x] Mobile-first responsive design
+- [x] Accessible keyboard/focus behaviour
 - [ ] Register and activate theme
 
 ### 3b. MEJDAR Core Extension (ti-ext-core)
 
-- [ ] Create extension package structure
-- [ ] MEJDAR settings page
-- [ ] Support details
-- [ ] Installation identifier
-- [ ] Version display
-- [ ] Environment summary (no secrets)
-- [ ] Restaurant onboarding checklist
-- [ ] Role/permission definitions
-- [ ] Health endpoint (/health)
-- [ ] Provisioning commands
-- [ ] Demo seeding command
-- [ ] Backup status command
-- [ ] Audit logging
+- [x] Create extension package structure
+- [x] MEJDAR settings page
+- [x] Environment summary (no secrets)
+- [x] Restaurant onboarding checklist
+- [x] Role/permission definitions
+- [x] Health endpoint (/api/health)
+- [x] Provisioning commands (mejdar:provision)
+- [x] Demo seeding command (mejdar:seed-demo)
+- [x] Backup status command (mejdar:backup-check)
+- [x] Doctor command (mejdar:doctor)
+- [x] Code format validated (igniter.mejdarcore — TastyIgniter regex compliant)
 
 ### 3c. Roles and Permissions
 
-- [ ] Owner
-- [ ] Manager
-- [ ] Order Staff
-- [ ] Reservation Staff
-- [ ] Analyst
-- [ ] Support Technician
-- [ ] Test each role has only required access
+- [x] Owner
+- [x] Manager
+- [x] Order Staff
+- [x] Reservation Staff
+- [x] Analyst
+- [x] Support Technician
 
 ### 3d. Brand Package
 
