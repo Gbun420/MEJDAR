@@ -1,0 +1,10 @@
+[build]
+  base = "apps/website"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_PUBLIC_ANALYTICS_ENABLED = "false"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
