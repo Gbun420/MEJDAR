@@ -15,6 +15,9 @@ apps/website/.env.production
 apps/restaurant/vendor/
 apps/website/node_modules/
 
+# Lock files: commit app lock files for reproducibility
+# (root composer.lock excluded if present)
+
 # ─── Node / Build ───────────────────────────────────────────────────
 .next/
 .vercel/
