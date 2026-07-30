@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mejdar.netlify.app";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://shiny-crisp-0a25e3.netlify.app";
 
 const routes = [
   "",

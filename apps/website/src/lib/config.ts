@@ -5,7 +5,7 @@ export const brand = {
     "MEJDAR gives restaurants their own branded ordering, reservation and analytics system with local support and predictable monthly pricing.",
   primaryCta: "Book a demo",
   secondaryCta: "View the live demo",
-  demoUrl: "http://localhost:8080",
+  demoUrl: "/demo",
   contactEmail: "hello@mejdar.com",
   contactPhone: "+356 2123 4567",
   address: {

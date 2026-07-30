@@ -37,32 +37,17 @@ export default function DemoPage() {
                 customer experience.
               </p>
               <div className="mt-8 space-y-4">
-                <a
-                  href={brand.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact"
                   className="block rounded-lg bg-mejdar-teal p-4 text-center text-white transition hover:bg-mejdar-teal-light"
                 >
                   <span className="text-lg font-semibold">
-                    Open the demo restaurant
+                    Request a live demo
                   </span>
                   <span className="block text-sm text-white/80">
-                    Opens in a new tab
+                    We&apos;ll set up a personal walkthrough for you
                   </span>
-                </a>
-                <a
-                  href={`${brand.demoUrl}/admin`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block rounded-lg border-2 border-mejdar-teal bg-white p-4 text-center text-mejdar-teal transition hover:bg-mejdar-limestone"
-                >
-                  <span className="text-lg font-semibold">
-                    View the admin dashboard
-                  </span>
-                  <span className="block text-sm text-mejdar-gray">
-                    Email: admin@mejdar.local / Password: password
-                  </span>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="rounded-lg bg-mejdar-limestone p-8">
