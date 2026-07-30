@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --mejdar-teal: #006D6D;
+  --mejdar-teal-light: #008A8A;
+  --mejdar-teal-dark: #005555;
+  --mejdar-navy: #102F35;
+  --mejdar-navy-light: #1A4A52;
+  --mejdar-limestone: #F3EFE6;
+  --mejdar-terracotta: #C96546;
+  --mejdar-terracotta-light: #D98566;
+  --mejdar-olive: #6C7D47;
+  --mejdar-olive-light: #8FA060;
+  --mejdar-white: #FFFFFF;
+  --mejdar-offwhite: #FAFAF8;
+  --mejdar-gray: #6B7280;
+  --mejdar-gray-light: #F3F4F6;
+  --mejdar-gray-dark: #374151;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-mejdar-teal: var(--mejdar-teal);
+  --color-mejdar-teal-light: var(--mejdar-teal-light);
+  --color-mejdar-teal-dark: var(--mejdar-teal-dark);
+  --color-mejdar-navy: var(--mejdar-navy);
+  --color-mejdar-navy-light: var(--mejdar-navy-light);
+  --color-mejdar-limestone: var(--mejdar-limestone);
+  --color-mejdar-terracotta: var(--mejdar-terracotta);
+  --color-mejdar-terracotta-light: var(--mejdar-terracotta-light);
+  --color-mejdar-olive: var(--mejdar-olive);
+  --color-mejdar-olive-light: var(--mejdar-olive-light);
+  --color-mejdar-white: var(--mejdar-white);
+  --color-mejdar-offwhite: var(--mejdar-offwhite);
+  --color-mejdar-gray: var(--mejdar-gray);
+  --color-mejdar-gray-light: var(--mejdar-gray-light);
+  --color-mejdar-gray-dark: var(--mejdar-gray-dark);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}

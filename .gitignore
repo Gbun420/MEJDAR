@@ -1,0 +1,73 @@
+# MEJDAR — Git Ignore
+
+# ─── Environment files ──────────────────────────────────────────────
+.env
+.env.local
+.env.production
+apps/restaurant/.env
+apps/website/.env.local
+apps/website/.env.production
+!.env.example
+!apps/restaurant/.env.example
+
+# ─── Vendor / Dependencies (runtime) ────────────────────────────────
+/vendor/
+apps/restaurant/vendor/
+apps/website/node_modules/
+
+# ─── Node / Build ───────────────────────────────────────────────────
+.next/
+.vercel/
+out/
+dist/
+build/
+
+# ─── TastyIgniter storage ──────────────────────────────────────────
+/apps/restaurant/storage/framework/cache/*
+/apps/restaurant/storage/framework/sessions/*
+/apps/restaurant/storage/framework/views/*
+/apps/restaurant/storage/logs/*
+/apps/restaurant/storage/temp/*
+/apps/restaurant/storage/app/uploads/*
+/apps/restaurant/storage/app/public/media/*
+!/apps/restaurant/storage/framework/cache/.gitignore
+!/apps/restaurant/storage/logs/.gitignore
+!/apps/restaurant/storage/app/uploads/.gitignore
+!/apps/restaurant/storage/app/public/.gitignore
+
+# ─── Docker ─────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ─── IDE / OS ──────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+._*
+
+# ─── Build artifacts / Logs ────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+coverage/
+.phpunit.result.cache
+.php-cs-fixer.cache
+
+# ─── Playwright / Testing ──────────────────────────────────────────
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.playwright-mcp/
+
+# ─── Debug ──────────────────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Misc ───────────────────────────────────────────────────────────
+*.pem
+*.key

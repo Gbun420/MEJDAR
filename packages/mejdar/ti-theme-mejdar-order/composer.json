@@ -1,0 +1,82 @@
+{
+    "name": "mejdar/ti-theme-mejdar-order",
+    "type": "tastyigniter-package",
+    "description": "MEJDAR branded ordering theme for TastyIgniter, built on Orange theme inheritance.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MEJDAR",
+            "email": "hello@mejdar.com"
+        }
+    ],
+    "keywords": [
+        "tastyigniter",
+        "theme",
+        "mejdar",
+        "restaurant",
+        "ordering"
+    ],
+    "require": {
+        "php": "^8.3",
+        "tastyigniter/ti-theme-orange": "^4.0",
+        "tastyigniter/core": "^4.0",
+        "tastyigniter/ti-ext-cart": "^4.0",
+        "tastyigniter/ti-ext-coupons": "^4.0",
+        "tastyigniter/ti-ext-frontend": "^4.0",
+        "tastyigniter/ti-ext-local": "^4.0",
+        "tastyigniter/ti-ext-pages": "^4.0",
+        "tastyigniter/ti-ext-payregister": "^4.0",
+        "tastyigniter/ti-ext-reservation": "^4.0",
+        "tastyigniter/ti-ext-socialite": "^4.0",
+        "tastyigniter/ti-ext-user": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mejdar\\ThemeOrder\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mejdar\\ThemeOrder\\ServiceProvider"
+            ]
+        },
+        "tastyigniter-theme": {
+            "code": "mejdar-order",
+            "name": "MEJDAR Order Theme",
+            "parent": "igniter-orange",
+            "locked": false,
+            "source-path": "/resources/views",
+            "meta-path": "/resources/meta",
+            "publish-paths": [
+                "/public"
+            ],
+            "require": {
+                "igniter.broadcast": "*",
+                "igniter.cart": "*",
+                "igniter.coupons": "*",
+                "igniter.frontend": "*",
+                "igniter.local": "*",
+                "igniter.pages": "*",
+                "igniter.payregister": "*",
+                "igniter.reservation": "*",
+                "igniter.socialite": "*",
+                "igniter.translate": "*",
+                "igniter.user": "*"
+            }
+        },
+        "branch-alias": {
+            "dev-master": "4.0.x-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "composer/installers": true
+        }
+    }
+}

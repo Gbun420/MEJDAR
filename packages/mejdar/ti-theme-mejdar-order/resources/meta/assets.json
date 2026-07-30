@@ -1,0 +1,11 @@
+{
+    "components": [],
+    "assets": {
+        "css": [
+            "resources/assets/css/theme.css"
+        ],
+        "js": [
+            "resources/assets/js/theme.js"
+        ]
+    }
+}

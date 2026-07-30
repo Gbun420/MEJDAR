@@ -1,0 +1,57 @@
+{
+    "name": "mejdar/ti-ext-core",
+    "type": "tastyigniter-package",
+    "description": "MEJDAR Core extension - settings, health checks, provisioning, and management commands.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MEJDAR",
+            "email": "hello@mejdar.com"
+        }
+    ],
+    "keywords": [
+        "tastyigniter",
+        "extension",
+        "mejdar",
+        "core",
+        "management"
+    ],
+    "require": {
+        "php": "^8.3",
+        "tastyigniter/core": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mejdar\\Core\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mejdar\\Core\\ServiceProvider"
+            ]
+        },
+        "tastyigniter-extension": {
+            "code": "igniter.mejdarcore",
+            "name": "MEJDAR Core",
+            "icon": {
+                "image": "icon.svg",
+                "color": "#FFFFFF",
+                "backgroundColor": "#006D6D"
+            }
+        },
+        "branch-alias": {
+            "dev-master": "4.0.x-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "composer/installers": true
+        }
+    }
+}
