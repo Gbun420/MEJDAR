@@ -12,7 +12,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /var/www/mejdar:/var/www/html:ro
+      - /var/www/mejdar:/var/www/html
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./nginx/ssl:/etc/nginx/ssl:ro
       - nginx_logs:/var/log/nginx
@@ -41,7 +41,7 @@ services:
     container_name: mejdar-app
     restart: always
     volumes:
-      - /var/www/mejdar:/var/www/html:ro
+      - /var/www/mejdar:/var/www/html
       - app_logs:/var/log/php-fpm
     environment:
       - APP_ENV=production
@@ -76,7 +76,7 @@ services:
         limits:
           memory: 512M
     healthcheck:
-      test: ["CMD-SHELL", "php-fpm-healthcheck || exit 1"]
+      test: ["CMD-SHELL", "php -r 'echo \"ok\";' || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3

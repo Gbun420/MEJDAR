@@ -126,6 +126,7 @@ services:
       sh -c "php artisan queue:work redis --sleep=3 --tries=3 --max-time=3600"
     volumes:
       - ./apps/restaurant:/var/www/html
+      - ./packages:/var/www/packages
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
@@ -160,6 +161,7 @@ services:
       sh -c "while true; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"
     volumes:
       - ./apps/restaurant:/var/www/html
+      - ./packages:/var/www/packages
     environment:
       - APP_ENV=local
       - APP_DEBUG=true

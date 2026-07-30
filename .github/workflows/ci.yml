@@ -10,14 +10,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  COMPOSE_DOCKER_CLI_BUILD: 1
-  DOCKER_BUILDKIT: 1
-
 jobs:
-  # ─── Lint ─────────────────────────────────────────────────────────
-  lint:
-    name: Lint
+  # ─── PHP Lint ──────────────────────────────────────────────────────
+  php-lint:
+    name: PHP Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -33,24 +29,35 @@ jobs:
       - name: Get Composer cache directory
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+        working-directory: apps/restaurant
 
       - name: Cache Composer dependencies
         uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('apps/restaurant/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install Composer dependencies (root)
+      - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
+        working-directory: apps/restaurant
 
       - name: Run PHP Pint
         run: vendor/bin/pint --test
+        working-directory: apps/restaurant
 
-      - name: Setup Node.js 20
+  # ─── Website Lint ──────────────────────────────────────────────────
+  website-lint:
+    name: Website Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: apps/website/package-lock.json
 
@@ -58,7 +65,7 @@ jobs:
         run: npm ci
         working-directory: apps/website
 
-      - name: Run ESLint (website)
+      - name: Run ESLint
         run: npm run lint
         working-directory: apps/website
 
@@ -102,30 +109,34 @@ jobs:
           php-version: "8.3"
           extensions: mbstring, xml, ctype, json, bcmath, pdo, pdo_mysql, tokenizer, fileinfo
           tools: composer:v2
-          coverage: xdebug
+          coverage: none
 
       - name: Get Composer cache directory
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+        working-directory: apps/restaurant
 
       - name: Cache Composer dependencies
         uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('apps/restaurant/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
+        working-directory: apps/restaurant
 
-      - name: Prepare application
+      - name: Prepare environment
         working-directory: apps/restaurant
         run: |
           cp .env.example .env
-          php artisan key:generate
+          php artisan key:generate --ansi
+
+      - name: Install TastyIgniter
+        working-directory: apps/restaurant
+        run: php artisan igniter:install --force --no-interaction
         env:
-          APP_ENV: testing
-          APP_DEBUG: "true"
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
@@ -138,20 +149,9 @@ jobs:
           REDIS_HOST: 127.0.0.1
           REDIS_PORT: 6379
 
-      - name: Run database migrations
-        working-directory: apps/restaurant
-        run: php artisan migrate --force
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-          DB_DATABASE: mejdar_test
-          DB_USERNAME: mejdar
-          DB_PASSWORD: secret
-
       - name: Run PHPUnit tests
         working-directory: apps/restaurant
-        run: vendor/bin/phpunit --coverage-text
+        run: vendor/bin/phpunit
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
@@ -159,6 +159,11 @@ jobs:
           DB_DATABASE: mejdar_test
           DB_USERNAME: mejdar
           DB_PASSWORD: secret
+          CACHE_DRIVER: redis
+          SESSION_DRIVER: redis
+          QUEUE_CONNECTION: redis
+          REDIS_HOST: 127.0.0.1
+          REDIS_PORT: 6379
 
   # ─── Build ────────────────────────────────────────────────────────
   build:
@@ -168,10 +173,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: apps/website/package-lock.json
 

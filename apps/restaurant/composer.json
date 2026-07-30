@@ -30,14 +30,14 @@
     "repositories": [
         {
             "type": "path",
-            "url": "/var/www/packages/mejdar/ti-theme-mejdar-order",
+            "url": "../packages/mejdar/ti-theme-mejdar-order",
             "options": {
                 "symlink": true
             }
         },
         {
             "type": "path",
-            "url": "/var/www/packages/mejdar/ti-ext-core",
+            "url": "../packages/mejdar/ti-ext-core",
             "options": {
                 "symlink": true
             }
