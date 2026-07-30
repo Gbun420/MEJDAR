@@ -29,4 +29,12 @@ return [
     // Backup status
     'last_backup_at' => null,
     'backup_status' => 'unknown',
+
+    // Reports menu registration
+    'reports' => [
+        'label' => 'Insights',
+        'icon' => 'icon-bar-chart',
+        'url' => 'mejdar/reports',
+        'permission' => 'igniter.manage_settings',
+    ],
 ];
